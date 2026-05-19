@@ -41,3 +41,22 @@ WHERE id_producto NOT IN (
     SELECT id_producto
     FROM detalle_ventas
 );
+
+-- Query Base
+SELECT 
+    v.id_venta,
+    c.nombre AS cliente,
+    cat.nombre_categoria AS categoria,
+    p.nombre_producto AS producto,
+    d.cantidad,
+    d.subtotal,
+    v.fecha_venta
+FROM ventas v
+JOIN clientes c
+ON v.id_cliente = c.id_cliente
+JOIN detalle_ventas d
+ON v.id_venta = d.id_venta
+JOIN productos p
+ON d.id_producto = p.id_producto
+JOIN categorias cat
+ON p.id_categoria = cat.id_categoria;
